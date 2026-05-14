@@ -45,3 +45,6 @@ logs/
 .pytest_cache/
 htmlcov/
 .coverage
+
+# Allow demo gif in assets
+!assets/demo.gif

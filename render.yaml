@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: tailortalk-backend
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port 8000
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: DRIVE_FOLDER_ID
+        sync: false
+
+  - type: web
+    name: tailortalk-frontend
+    runtime: python
+    buildCommand: pip install -r frontend/requirements.txt
+    startCommand: streamlit run frontend/app.py --server.port 10000 --server.address 0.0.0.0
+    envVars:
+      - key: BACKEND_URL
+        sync: false

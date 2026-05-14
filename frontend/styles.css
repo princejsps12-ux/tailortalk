@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-primary: #0f1117;
+    --bg-card: #1e2130;
+    --bg-sidebar: #161822;
+    --accent: #4f8ef7;
+    --accent-hover: #6ba0f8;
+    --text-primary: #ffffff;
+    --text-secondary: #8b8fa8;
+    --border: #2a2d3e;
+    --success: #22c55e;
+    --error: #ef4444;
+    --pdf-color: #ef4444;
+    --doc-color: #4f8ef7;
+    --sheet-color: #22c55e;
+    --slides-color: #f59e0b;
+    --image-color: #a855f7;
+    --file-color: #8b8fa8;
+}
+
+/* -------------------------------------------------------------------------
+   App-wide
+   ------------------------------------------------------------------------- */
+html, body, .stApp, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: var(--text-primary);
+}
+
+.stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stHeader"] {
+    background-color: var(--bg-primary) !important;
+}
+
+[data-testid="stHeader"] {
+    background: transparent !important;
+}
+
+[data-testid="stAppViewContainer"] .main .block-container {
+    padding-top: 1.5rem;
+    padding-bottom: 6rem;
+    max-width: 1100px;
+}
+
+hr {
+    border-color: var(--border) !important;
+    opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------
+   Scrollbar
+   ------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3a3d4e;
+}
+
+/* -------------------------------------------------------------------------
+   Sidebar
+   ------------------------------------------------------------------------- */
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] > div {
+    background-color: var(--bg-sidebar) !important;
+    border-right: 1px solid var(--border);
+}
+
+.tt-sidebar-title {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4f8ef7 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    line-height: 1.2;
+}
+
+.tt-sidebar-subtitle {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.tt-sidebar-section {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 4px 0 8px 0;
+    letter-spacing: 0.2px;
+}
+
+.tt-sidebar-empty {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* -------------------------------------------------------------------------
+   Status indicator (pulsing dot)
+   ------------------------------------------------------------------------- */
+.tt-status-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    padding: 4px 0;
+    color: var(--text-primary);
+}
+
+.tt-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.tt-status-dot.connected {
+    background: var(--success);
+    animation: pulse-green 2s ease-in-out infinite;
+}
+
+.tt-status-dot.disconnected {
+    background: var(--error);
+    animation: pulse-red 2s ease-in-out infinite;
+}
+
+.tt-status-label.connected { color: var(--success); }
+.tt-status-label.disconnected { color: var(--error); }
+
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+    50%      { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+}
+
+@keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+    50%      { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+
+/* -------------------------------------------------------------------------
+   Main header
+   ------------------------------------------------------------------------- */
+.tt-header {
+    padding: 4px 0 20px 0;
+}
+
+.tt-title {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    background: linear-gradient(90deg, #4f8ef7 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.tt-subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-top: 6px;
+}
+
+/* -------------------------------------------------------------------------
+   Chat bubbles
+   ------------------------------------------------------------------------- */
+.tt-msg {
+    display: flex;
+    margin: 10px 0;
+}
+
+.tt-msg-user {
+    justify-content: flex-end;
+}
+
+.tt-msg-assistant {
+    justify-content: flex-start;
+}
+
+.tt-bubble {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.tt-bubble-user {
+    background: var(--accent);
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 10px rgba(79, 142, 247, 0.25);
+}
+
+.tt-bubble-assistant {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+}
+
+/* -------------------------------------------------------------------------
+   Assistant extras (search/reasoning lines)
+   ------------------------------------------------------------------------- */
+.tt-extras {
+    margin: -2px 0 14px 6px;
+}
+
+.tt-extras-line {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.tt-extras-line code {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 6px;
+    color: var(--accent);
+    font-size: 12px;
+}
+
+/* -------------------------------------------------------------------------
+   File grid + cards
+   ------------------------------------------------------------------------- */
+.tt-files-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 12px 0 16px 0;
+}
+
+@media (max-width: 900px) {
+    .tt-files-grid { grid-template-columns: 1fr; }
+}
+
+.tt-file-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+    display: flex;
+    gap: 12px;
+}
+
+.tt-file-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent);
+}
+
+.tt-file-icon {
+    font-size: 30px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.tt-file-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tt-file-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    word-break: break-word;
+}
+
+.tt-file-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+.tt-file-preview {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-top: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Type badges */
+.tt-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.file-size {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    display: block;
+}
+
+.tt-badge-pdf    { background: rgba(239, 68, 68, 0.15);  color: var(--pdf-color); }
+.tt-badge-doc    { background: rgba(79, 142, 247, 0.15); color: var(--doc-color); }
+.tt-badge-sheet  { background: rgba(34, 197, 94, 0.15);  color: var(--sheet-color); }
+.tt-badge-slides { background: rgba(245, 158, 11, 0.15); color: var(--slides-color); }
+.tt-badge-image  { background: rgba(168, 85, 247, 0.15); color: var(--image-color); }
+.tt-badge-file   { background: rgba(139, 143, 168, 0.15); color: var(--file-color); }
+
+/* Open-in-Drive button */
+.tt-open-btn {
+    align-self: flex-start;
+    margin-top: 12px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    color: var(--accent) !important;
+    background: transparent;
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.tt-open-btn:hover {
+    background: var(--accent);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+
+/* -------------------------------------------------------------------------
+   Suggestion chips + sidebar pill buttons (Streamlit st.button)
+   ------------------------------------------------------------------------- */
+.stButton > button {
+    background: transparent !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-secondary) !important;
+    border-radius: 999px !important;
+    font-size: 13px !important;
+    padding: 6px 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    font-family: 'Inter', sans-serif !important;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease !important;
+    box-shadow: none !important;
+}
+
+.stButton > button:hover {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--accent) !important;
+}
+
+.stButton > button:focus {
+    box-shadow: 0 0 0 2px rgba(79, 142, 247, 0.25) !important;
+    outline: none !important;
+}
+
+/* -------------------------------------------------------------------------
+   Chat input
+   ------------------------------------------------------------------------- */
+[data-testid="stChatInput"] {
+    background: var(--bg-primary) !important;
+}
+
+[data-testid="stChatInput"] textarea,
+[data-testid="stChatInput"] input {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+[data-testid="stChatInput"] textarea::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+/* -------------------------------------------------------------------------
+   Empty state
+   ------------------------------------------------------------------------- */
+.tt-empty {
+    text-align: center;
+    padding: 28px 18px;
+    background: var(--bg-card);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    margin: 12px 0;
+}
+
+.tt-empty-art {
+    font-size: 44px;
+    margin-bottom: 10px;
+    letter-spacing: 4px;
+}
+
+.tt-empty-title {
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.tt-empty-msg {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+/* -------------------------------------------------------------------------
+   Error banner
+   ------------------------------------------------------------------------- */
+.tt-error-banner {
+    background: rgba(239, 68, 68, 0.08);
+    border-left: 4px solid var(--error);
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    margin: 8px 0 16px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------
+   Spinner color
+   ------------------------------------------------------------------------- */
+[data-testid="stSpinner"] > div > div {
+    border-top-color: var(--accent) !important;
+}
