@@ -13,15 +13,15 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 
-from .agent import run_agent
-from .drive_tool import check_drive_connection
-from .memory import (
+from agent import run_agent
+from drive_tool import check_drive_connection
+from memory import (
     add_recent_search,
     cleanup_old_sessions,
     clear_memory,
     get_recent_searches,
 )
-from .models import ChatRequest, ChatResponse, FileResult, HealthResponse
+from models import ChatRequest, ChatResponse, FileResult, HealthResponse
 
 load_dotenv()
 

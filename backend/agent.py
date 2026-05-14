@@ -17,8 +17,8 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-from .drive_tool import search_files
-from .memory import get_memory
+from drive_tool import search_files
+from memory import get_memory
 
 load_dotenv()
 
