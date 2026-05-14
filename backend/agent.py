@@ -59,7 +59,7 @@ Do not number them. Do not add anything after the last SUGGESTION line."""
 
 FULL_SYSTEM_PROMPT = SYSTEM_PROMPT + "\n\n" + OUTPUT_FORMAT_INSTRUCTIONS
 
-GEMINI_MODEL = "gemini-1.5-flash"
+GEMINI_MODEL = "gemini-2.5-flash"
 
 _SUGGESTION_RE = re.compile(r"(?im)^\s*SUGGESTION:\s*(.+?)\s*$")
 _GENERIC_SUGGESTIONS = (
